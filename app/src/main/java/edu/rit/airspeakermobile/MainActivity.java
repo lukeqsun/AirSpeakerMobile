@@ -2,10 +2,9 @@ package edu.rit.airspeakermobile;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import nz.co.iswe.android.airplay.AirPlayServer;
 
@@ -21,14 +20,14 @@ public class MainActivity extends ActionBarActivity {
 
         new Thread(AirPlayServer.getIstance(this)).start();
 
-        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Log.e("hefeng", "PlayerState : " + MyApplication.getInstance().getPlayerState()) ;
-//			    MainActivity.this.sendBroadcast(new Intent(Constants.IKEY_MEDIA_PLAY_OR_PAUSE));
-            }
-        });
+//        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                Log.e("hefeng", "PlayerState : " + MyApplication.getInstance().getPlayerState()) ;
+////			    MainActivity.this.sendBroadcast(new Intent(Constants.IKEY_MEDIA_PLAY_OR_PAUSE));
+//            }
+//        });
     }
 
 
@@ -52,5 +51,13 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            System.exit(0);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
